@@ -4,7 +4,6 @@ from datetime import date
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.forms import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -67,7 +66,8 @@ class AddDonation(View):
         try:
             chosen_categories = request.GET.getlist("categories")
             institutions_to_choose = Donation.categories.filter(donation__institution_id__in=chosen_categories)
-            return render(request, 'form.html', {"categories":categories, "institutions":institutions, "institutions_to_choose":institutions_to_choose})
+            return render(request, 'form.html', {"categories":categories, "institutions":institutions,
+                                                 "institutions_to_choose":institutions_to_choose})
         except Exception:
             return render(request, 'form.html', {"categories":categories, "institutions":institutions})
 
@@ -101,7 +101,7 @@ class AddDonation(View):
 
         for element in categories:
             new_donation.categories.add(int(element))
-        new_donation.save() #
+        new_donation.save()
         return redirect('confirmation')
 
 
@@ -164,7 +164,7 @@ class EditUser(LoginRequiredMixin, View):
             msg = "Zapisano."
             return render(request, 'user-edit.html', {"msg": msg, "form2": form2})
         else:
-            msg = "Hasło się nie zgadza. Popraw, aby zapisać."
+            msg = "Hasło się nie zgadza. Popraw je, aby zapisać."
             return render(request, 'user-edit.html', {"msg": msg, "form2": form2})
 
 
