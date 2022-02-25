@@ -6,7 +6,9 @@ It contains comprehensive administration panel, dynamic data display,
 typical user logging and managing, password reset system,
 archiving system for collected gifts, contact form e-mail handling.
 
-_Python 3.6, Django 3.0.7, psycopg2-binary 2.8.5_
+
+_Python 3.10, Django 4.0.2, psycopg2-binary 2.9.3_
+
 
 **Correct configuration of the file 'settings_local.py' is essential for proper use!**
 
